@@ -10,6 +10,7 @@ function App() {
       <Navigation />
       <MainLayout />
       <Player />
+      <img src='/spotify-logo.png' />
     </>
   );
 }
