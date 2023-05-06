@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
 
 const MainLayout = () => {
   return (
-    <main>MainLayout</main>
-  )
-}
+    <main>
+      <div>
+        <div>For You</div>
+        <input type="text" placeholder="Search Song,Artist" />
+      </div>
+      <div>
+        List of Songs
+      </div>
+    </main>
+  );
+};
 
-export default MainLayout
+export default MainLayout;

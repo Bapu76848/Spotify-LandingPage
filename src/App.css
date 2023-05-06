@@ -7,6 +7,7 @@
   --gray-70: #777c85;
   --slate-80: #23262b;
   --gray-40: #9c9d9f;
+  --fs-big: 1.5rem;
 }
 /* Reset CSS */
 body {
@@ -25,20 +26,28 @@ body {
 div.main-container {
   display: flex;
   gap: 1rem;
+  max-height: 100vh;
+  background-image: linear-gradient(to bottom right, rgba(0, 68, 255, 0.171), transparent 80%);
 }
 /* Navigation CSS */
 aside#navigation {
   flex-basis: 15%;
-  height: 100vh;
+  min-width: 160px;
+  max-height: 100vh;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 #navigation > div:first-of-type > img {
   min-width: 127px;
   width: 85%;
 }
+#navigation > div:nth-child(2) {
+  flex-basis: 1 1 auto;
+}
 #navigation ul {
   list-style-type: none;
-  color: var(--gray-60);
+  color: var(--gray-70);
   margin-top: 2rem;
 }
 #navigation ul li {
@@ -55,13 +64,110 @@ aside#navigation {
 #navigation > div:last-of-type {
   margin-top: auto;
 }
+#navigation ul li a.active {
+  color: white;
+  font-weight: 600;
+}
+.profile-btn {
+  outline: none;
+  border: none;
+  background-color: var(--slate-80);
+  border-radius: 50%;
+  padding: 4px;
+}
+.profile-btn img {
+  width: 40px;
+  vertical-align: middle;
+  border-radius: inherit;
+}
 /* Player CSS */
 aside#player {
   flex-basis: 45%;
+  padding: 2rem;
+  --content-width: 320px;
+}
+#player > div {
+  width: var(--content-width);
+}
+.song-info > h1 {
+  font-size: var(--fs-big);
+  font-weight: 600;
+}
+.song-info > p {
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+  color: var(--gray-60);
+  font-weight: 500;
+}
+.song-img img {
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: var(--content-width);
+}
+.song-controls input[type="range"] {
+  width: var(--content-width);
+  height: 5px;
+  color: white;
+}
+.controls-handlers {
+  margin-top: 1.23rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.controls-handlers span:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.controls-handlers span:nth-child(2) button:first-of-type > * {
+  --margin-vt: 1px;
+  --margin-rt: 3px;
+}
+.controls-handlers span:nth-child(2) button:last-of-type > * {
+  --margin-vt: 1px;
+  --margin-rt: -3px;
+}
+.controls-handlers span:nth-child(2) button:nth-child(2) > * {
+  --margin-vt: 1px;
+  --margin-rt: -3px;
+}
+.controls-handlers button {
+  --margin-vt: 0px;
+  --margin-rt: 0px;
+  --margin-lt: 0px;
+  padding: 0.23rem;
+  outline: none;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  width: 39px;
+  height: 39px;
+  background-color: transparent;
+  color: var(--gray-40);
+  cursor: pointer;
+}
+.controls-handlers button > * {
+  vertical-align: middle;
+  padding: 0;
+  margin-bottom: var(--margin-vt);
+  margin-left: var(--margin-lt);
+  margin-right: var(--margin-rt);
+}
+.controls-handlers button.bg-dark {
+  background-color: var(--slate-80);
+  color: var(--white-clr);
+}
+.controls-handlers button.bg-white {
+  background-color: var(--white-clr);
+  color: var(--black-clr);
 }
 /* Main CSS */
 main {
   margin-right: auto;
   flex-basis: 30%;
-  background-color: var(--gray-60);
+  border-right: 1px solid var(--slate-80);
+  border-left: 1px solid var(--slate-80);
+  padding-inline: 1rem;
 }
