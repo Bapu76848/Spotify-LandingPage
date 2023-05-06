@@ -7,10 +7,11 @@ import Player from "./components/Player";
 function App() {
   return (
     <>
-      <Navigation />
-      <MainLayout />
-      <Player />
-      <img src='/spotify-logo.png' />
+      <div className="main-container">
+        <Navigation />
+        <MainLayout />
+        <Player />
+      </div>
     </>
   );
 }

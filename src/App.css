@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
 :root {
   --white-clr: #fff;
   --black-clr: #000;
-  --white-10: rgba(#FFF / 0.1);
-  --white-60: rgba(#FFF / 0.6);
-  --white-8: rgba(#FFF / 0.8);
+  --gray-60: #9fa1a5;
+  --gray-70: #777c85;
+  --slate-80: #23262b;
+  --gray-40: #9c9d9f;
 }
 
 body {
@@ -13,5 +14,25 @@ body {
   padding: 0;
   background-color: var(--black-clr);
   color: var(--white-clr);
-  font-family: 'Open Sans','sans-serif';
+  font-family: "Open Sans", "sans-serif";
+}
+
+li {
+  list-style-type: none;
+}
+
+div.main-container {
+  display: flex;
+  gap: 1rem;
+}
+aside#navigation {
+  flex-basis: 15%;
+}
+aside#player {
+  flex-basis: 45%;
+}
+main {
+  margin-right: auto;
+  flex-basis: 30%;
+  background-color: var(--gray-60);
 }
