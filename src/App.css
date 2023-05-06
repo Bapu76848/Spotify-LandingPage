@@ -28,9 +28,12 @@ div.main-container {
   gap: 1rem;
   max-height: 100vh;
   background-image: linear-gradient(to bottom right, rgba(0, 68, 255, 0.171), transparent 80%);
+  overflow: auto;
 }
 /* Navigation CSS */
 aside#navigation {
+  position: sticky;
+  inset: 0;
   flex-basis: 15%;
   min-width: 160px;
   max-height: 100vh;
@@ -85,6 +88,9 @@ aside#player {
   flex-basis: 45%;
   padding: 2rem;
   --content-width: 320px;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 #player > div {
   width: var(--content-width);
