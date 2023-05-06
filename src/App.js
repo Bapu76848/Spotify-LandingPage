@@ -1,19 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Navigation from "./components/Navigation";
+import MainLayout from "./components/MainLayout";
+import Player from "./components/Player";
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        Navigation
-      </div>
-      <div>
-        Sidebar
-      </div>
-      <div>
-        Player
-      </div>
-    </div>
+    <>
+      <Navigation />
+      <MainLayout />
+      <Player />
+    </>
   );
 }
 
