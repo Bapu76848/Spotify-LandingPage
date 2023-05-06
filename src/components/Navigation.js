@@ -4,14 +4,14 @@ const Navigation = () => {
   return (
     <aside id="navigation">
       <div>
-        <img width={200} src="/spotify-logo.png" />
+        <img src="/spotify-logo.png" title="spotify-logo"/>
       </div>
       <div>
         <ul>
-          <li>For You</li>
-          <li>Top Tracks</li>
-          <li>Favorites</li>
-          <li>Recently Played</li>
+          <li><a href="">For You</a></li>
+          <li><a href="">Top Tracks</a></li>
+          <li><a href="">Favorites</a></li>
+          <li><a href="">Recently Played</a></li>
         </ul>
       </div>
       <div>

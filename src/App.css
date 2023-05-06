@@ -8,7 +8,7 @@
   --slate-80: #23262b;
   --gray-40: #9c9d9f;
 }
-
+/* Reset CSS */
 body {
   margin: 0;
   padding: 0;
@@ -16,21 +16,50 @@ body {
   color: var(--white-clr);
   font-family: "Open Sans", "sans-serif";
 }
-
-li {
-  list-style-type: none;
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
 div.main-container {
   display: flex;
   gap: 1rem;
 }
+/* Navigation CSS */
 aside#navigation {
   flex-basis: 15%;
+  height: 100vh;
+  padding: 1rem;
 }
+#navigation > div:first-of-type > img {
+  min-width: 127px;
+  width: 85%;
+}
+#navigation ul {
+  list-style-type: none;
+  color: var(--gray-60);
+  margin-top: 2rem;
+}
+#navigation ul li {
+  margin-block: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+#navigation ul li a {
+  color: inherit;
+}
+#navigation ul li a:hover {
+  color: var(--white-clr);
+}
+#navigation > div:last-of-type {
+  margin-top: auto;
+}
+/* Player CSS */
 aside#player {
   flex-basis: 45%;
 }
+/* Main CSS */
 main {
   margin-right: auto;
   flex-basis: 30%;
