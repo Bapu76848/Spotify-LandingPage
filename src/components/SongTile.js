@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PlayerContext } from "../context/PlayerContext";
 
 const SongTile = ({ song }) => {
+  const [currentSong] = useContext(PlayerContext);
   return (
-    <div className="song-tile">
+    <div
+      className={`song-tile ${currentSong._id === song._id ? "active" : ""}`}
+    >
       <div>
         <span>
           <img src={song.photo} />

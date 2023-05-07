@@ -5,10 +5,8 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import ForYou from "./components/ForYou";
-import Favourites from "./components/Favourites";
-import RecentlyPlayed from "./components/RecentlyPlayed";
-import MainLayout from "./components/MainLayout";
+import { PlayerProvider } from "./context/PlayerContext";
+
 const client = new ApolloClient({
   uri: "https://api.ss.dev/resource/api",
   cache: new InMemoryCache(),
@@ -18,7 +16,9 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <App />
+        <PlayerProvider>
+          <App />
+        </PlayerProvider>
       </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>

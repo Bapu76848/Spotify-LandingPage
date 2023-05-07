@@ -7,6 +7,7 @@
   --gray-70: #777c85;
   --slate-80: #23262b;
   --gray-40: #9c9d9f;
+  --gray-transluscent: #a8949428;
   --fs-big: 1.5rem;
 }
 /* Reset CSS */
@@ -21,15 +22,29 @@ body {
   margin: 0;
   padding: 0;
   text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  font-smooth: always;
 }
-
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--gray-transluscent);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray-70);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--white-clr);
+}
 div.main-container {
   display: flex;
   gap: 1rem;
   max-height: 100vh;
   background-image: linear-gradient(
     to bottom right,
-    rgba(174, 255, 0, 0.1),
+    rgba(255, 0, 0, 0.1),
     transparent 80%
   );
   overflow: auto;
@@ -166,7 +181,7 @@ h1 {
   margin-right: var(--margin-rt);
 }
 .controls-handlers button.bg-dark {
-  background-color: var(--slate-80);
+  background-color: var(--gray-transluscent);
   color: var(--white-clr);
 }
 .controls-handlers button.bg-white {
@@ -196,7 +211,7 @@ main input[type="search"] {
   border-radius: 0.4rem;
   border: none;
 
-  background-color: #a8949428;
+  background-color: var(--gray-transluscent);
   caret-color: white;
   color: white;
 }
@@ -257,5 +272,5 @@ main input[type="search"] ~ svg {
 }
 .song-tile:hover,
 .song-tile.active {
-  background-color: #a8949428;
+  background-color: var(--gray-transluscent);
 }
