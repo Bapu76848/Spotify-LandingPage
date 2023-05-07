@@ -1,21 +1,21 @@
 import React from "react";
 import { songs } from "../assets/songs";
+import { IoSearch } from "react-icons/io5";
+import SongTile from "./SongTile";
 
 const ForYou = () => {
   return (
     <>
-      <div>
-        <div>For You</div>
-        <input type="text" placeholder="Search Song,Artist" />
+      <h1>For You</h1>
+      <div className="search-wrapper">
+        <input type="search" placeholder="Search Song, Artist" />
+        <IoSearch />
       </div>
-      <div>
-        List of Songs
-        <div className="songs">
-          {songs.map((song) => (
-            <h4 key={song.songName}>{song.songName}</h4>
-          ))}
-        </div>
-      </div>
+      <section>
+        {songs.map((song) => (
+          <SongTile song={song} />
+        ))}
+      </section>
     </>
   );
 };

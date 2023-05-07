@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
   return (
@@ -10,18 +10,22 @@ const Navigation = () => {
       <div>
         <ul>
           <li>
-           <Link to={'/favourites'}> <a className="active" href={`/favourites`}>
-              For You
-            </a></Link>
+            <NavLink to={"/"}>For You</NavLink>
           </li>
           <li>
-            <a href="">Top Tracks</a>
+            <NavLink to={"top-tracks"} end>
+              Top Tracks
+            </NavLink>
           </li>
           <li>
-            <a href="">Favorites</a>
+            <NavLink end to={"favourites"}>
+              Favorites
+            </NavLink>
           </li>
           <li>
-            <a href="">Recently Played</a>
+            <NavLink end to={"recently-played"}>
+              Recently Played
+            </NavLink>
           </li>
         </ul>
       </div>

@@ -7,12 +7,13 @@ import RecentlyPlayed from "./RecentlyPlayed";
 const MainLayout = () => {
   return (
     <main>
-      <Routes>
-        <Route path="" element={<ForYou />}/>
-        <Route path="favourites" element={<Favourites />}/>
-        <Route path="recently-played" element={<RecentlyPlayed />}/>
-        <Route path="top-tracks" element={<b>Top Tracks</b>}/>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<ForYou />} />
+          <Route path="favourites" element={<Favourites />} />
+          <Route path="recently-played" element={<RecentlyPlayed />} />
+          <Route path="top-tracks" element={<b>Top Tracks</b>} />
+          <Route path="*" element={<h1>404</h1>} />
+        </Routes>
     </main>
   );
 };
