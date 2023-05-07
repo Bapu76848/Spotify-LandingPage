@@ -17,21 +17,21 @@ const GET_SONGS = gql`
   }
 `;
 
-const ForYou = () => {
+const TopTracks = () => {
   const { error, loading, data } = useQuery(GET_SONGS, {
-    variables: { playlistId: 1 },
+    variables: { playlistId: 2 },
   });
   console.log(error, loading, data);
+
   return (
     <>
-      <h1>For You</h1>
+      <h1>Top Tracks</h1>
       <div className="search-wrapper">
         <input type="search" placeholder="Search Song, Artist" />
         <IoSearch />
       </div>
       <section>
         {data?.getSongs.map((song) => (
-          // <b>{song.title}</b>
           <SongTile key={song._id} song={song} />
         ))}
       </section>
@@ -39,4 +39,4 @@ const ForYou = () => {
   );
 };
 
-export default ForYou;
+export default TopTracks;

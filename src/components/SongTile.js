@@ -5,16 +5,18 @@ const SongTile = ({ song }) => {
     <div className="song-tile">
       <div>
         <span>
-          <img src="https://img.freepik.com/free-psd/saturday-party-social-media-template_505751-2936.jpg?w=740&t=st=1683449580~exp=1683450180~hmac=5f75a6eeb403c0f5d4e270199724fd2a0a6dad4172a3dbdd2715c0cfd908edf8" />
+          <img src={song.photo} />
         </span>
         <span>
-          <p>{song.songName}</p>
+          <p>{song.title}</p>
           <small>{song.artist}</small>
         </span>
       </div>
 
       <div className="song-duration">
-        <p>1:46</p>
+        <p>
+          {(song.duration / 60).toString().replace(".", ":").substring(0, 4)}
+        </p>
       </div>
     </div>
   );

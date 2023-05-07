@@ -2,34 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { RouterProvider, BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { createBrowserRouter } from "react-router-dom";
 import ForYou from "./components/ForYou";
 import Favourites from "./components/Favourites";
 import RecentlyPlayed from "./components/RecentlyPlayed";
 import MainLayout from "./components/MainLayout";
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     children: [
-//       { path: "/", element: <MainLayout /> }
-//     ],
-//   },
-// ]);
-
 const client = new ApolloClient({
-  url: "",
+  uri: "https://api.ss.dev/resource/api",
   cache: new InMemoryCache(),
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      {/* <RouterProvider router={router} /> */}
       <BrowserRouter>
         <App />
       </BrowserRouter>

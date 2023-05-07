@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   IoEllipsisHorizontal,
   IoPlay,
@@ -6,11 +6,15 @@ import {
   IoPlayForward,
   IoVolumeHigh,
 } from "react-icons/io5";
+import { PlayerContext } from "../context/PlayerContext";
 const Player = () => {
+  const currentSong = useContext(PlayerContext);
+  console.log(currentSong)
   return (
     <aside id="player">
       <div>
         <div className="song-info">
+          <h1>{currentSong}</h1>
           <h1>Grand Escape feat Tokyo Miura</h1>
           <p>Tokyo Miura</p>
         </div>
