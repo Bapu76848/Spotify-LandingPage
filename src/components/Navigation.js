@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
@@ -9,7 +10,9 @@ const Navigation = () => {
       <div>
         <ul>
           <li>
-            <a className="active" href="">For You</a>
+           <Link to={'/favourites'}> <a className="active" href={`/favourites`}>
+              For You
+            </a></Link>
           </li>
           <li>
             <a href="">Top Tracks</a>

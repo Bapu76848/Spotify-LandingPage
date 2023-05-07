@@ -10,7 +10,7 @@ const Player = () => {
   return (
     <aside id="player">
       <div>
-        <div class="song-info">
+        <div className="song-info">
           <h1>Grand Escape feat Tokyo Miura</h1>
           <p>Tokyo Miura</p>
         </div>

@@ -1,21 +1,18 @@
 import React from "react";
-import { songs } from "../assets/songs";
+import { Routes, Route } from "react-router-dom";
+import ForYou from "./ForYou";
+import Favourites from "./Favourites";
+import RecentlyPlayed from "./RecentlyPlayed";
 
 const MainLayout = () => {
   return (
     <main>
-      <div>
-        <div>For You</div>
-          <input type="text" placeholder="Search Song,Artist" />
-        </div>
-      <div>
-        List of Songs
-        <div className="songs">
-          {songs.map((song) => (
-            <h4>{song.songName}</h4>
-          ))}
-        </div>
-      </div>
+      <Routes>
+        <Route path="" element={<ForYou />}/>
+        <Route path="favourites" element={<Favourites />}/>
+        <Route path="recently-played" element={<RecentlyPlayed />}/>
+        <Route path="top-tracks" element={<b>Top Tracks</b>}/>
+      </Routes>
     </main>
   );
 };
