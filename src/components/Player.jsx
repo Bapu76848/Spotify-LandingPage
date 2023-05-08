@@ -33,7 +33,7 @@ const Player = () => {
     const { r, g, b } = getImageColor(image.current);
     document.getElementById(
       "main"
-    ).style.background = `linear-gradient(to bottom right,rgb(${r},${g},${b},0.2),transparent 80%)`;
+    ).style.background = `linear-gradient(to right,rgb(${r},${g},${b},0.2),transparent 80%)`;
   }
   useEffect(() => {
     updateRangeControl();

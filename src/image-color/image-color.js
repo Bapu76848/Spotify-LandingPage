@@ -1,7 +1,5 @@
 export function getImageColor(imgEl) {
-  imgEl.onload = () => {
-    imgEl.crossOrigin = "anonymous";
-  };
+  imgEl.crossOrigin = "anonymous";
   var blockSize = 5,
     defaultRGB = { r: 0, g: 0, b: 0 },
     canvas = document.createElement("canvas"),
@@ -43,6 +41,6 @@ export function getImageColor(imgEl) {
   rgb.r = ~~(rgb.r / count);
   rgb.g = ~~(rgb.g / count);
   rgb.b = ~~(rgb.b / count);
-
+  imgEl.crossOrigin = "";
   return rgb;
 }
