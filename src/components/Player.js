@@ -1,15 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
+
 import {
   IoEllipsisHorizontal,
   IoPlay,
   IoPlayBack,
   IoPlayForward,
   IoVolumeHigh,
+  IoPause,
 } from "react-icons/io5";
 import { PlayerContext } from "../context/PlayerContext";
+import { MusicContext } from "../context/MusicContext";
+
 const Player = () => {
-  const [currentSong] = useContext(PlayerContext);
-  console.log(currentSong);
+  // useEffect(() => {
+  //   first;
+  // }, [third]);
+  const [audio, currentSong, setCurrentSong] = useContext(PlayerContext);
+  const [songs, setSongs] = useContext(MusicContext);
+  const rangeControl = useRef();
+  audio.element.ontimeupdate = (e) => {
+    currentSong.currentTime = audio.currentTime;
+    rangeControl.current.value = Math.floor(
+      (audio.element.currentTime / audio.element.duration) * 100
+    );
+  };
+  function handleSeek(e) {
+    audio.element.currentTime = (e.target.value * audio.element.duration) / 100;
+  }
+  function handlePlayPause() {
+    if (audio.isPlaying) {
+      audio.element.pause();
+      audio.isPlaying = false;
+    } else {
+      audio.element.play();
+      audio.isPlaying = true;
+    }
+    console.dir(audio);
+  }
   return (
     <aside id="player">
       <div>
@@ -23,7 +50,13 @@ const Player = () => {
 
         <div className="song-controls">
           <div>
-            <input type="range" />
+            <input
+              type="range"
+              ref={rangeControl}
+              value={0}
+              max={100}
+              onChange={handleSeek}
+            />
           </div>
           <div className="controls-handlers">
             <span>
@@ -35,8 +68,8 @@ const Player = () => {
               <button>
                 <IoPlayBack />
               </button>
-              <button className="bg-white">
-                <IoPlay />
+              <button className="bg-white" onClick={handlePlayPause}>
+                {audio.isPlaying ? <IoPause /> : <IoPlay />}
               </button>
 
               <button>

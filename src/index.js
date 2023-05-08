@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { PlayerProvider } from "./context/PlayerContext";
+import { MusicProvider } from "./context/MusicContext";
 
 const client = new ApolloClient({
   uri: "https://api.ss.dev/resource/api",
@@ -16,9 +17,11 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <PlayerProvider>
-          <App />
-        </PlayerProvider>
+        <MusicProvider>
+          <PlayerProvider>
+            <App />
+          </PlayerProvider>
+        </MusicProvider>
       </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>
