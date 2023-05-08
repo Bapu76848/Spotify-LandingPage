@@ -2,9 +2,13 @@ import React, { useContext } from "react";
 import { PlayerContext } from "../context/PlayerContext";
 
 const SongTile = ({ song }) => {
-  const [currentSong] = useContext(PlayerContext);
+  const [currentSong, setCurrentSong] = useContext(PlayerContext);
+  function loadSong() {
+    setCurrentSong({ ...song, isFirst: false });
+  }
   return (
     <div
+      onClick={loadSong}
       className={`song-tile ${currentSong._id === song._id ? "active" : ""}`}
     >
       <div>

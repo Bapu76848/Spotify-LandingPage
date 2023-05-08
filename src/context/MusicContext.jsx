@@ -1,6 +1,6 @@
 import React, { useState, createContext } from "react";
 
-export const MusicContext = createContext([]);
+export const MusicContext = createContext();
 
 export const MusicProvider = ({ children }) => {
   const [songs, setSongs] = useState([]);

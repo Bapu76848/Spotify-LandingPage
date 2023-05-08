@@ -1,8 +1,9 @@
-import React from "react";
-import { songs } from "../assets/songs";
+import React, { useEffect, useContext } from "react";
 import { IoSearch } from "react-icons/io5";
 import SongTile from "./SongTile";
 import { useQuery, gql } from "@apollo/client";
+import { BiLoaderAlt } from "react-icons/bi";
+import { MusicContext } from "../context/MusicContext";
 
 const GET_SONGS = gql`
   query Query($playlistId: Int!) {
@@ -18,10 +19,15 @@ const GET_SONGS = gql`
 `;
 
 const RecentlyPlayed = () => {
-  const { error, loading, data } = useQuery(GET_SONGS, {
+  const { loading, data } = useQuery(GET_SONGS, {
     variables: { playlistId: 4 },
   });
-  console.log(error, loading, data);
+  const [songs, setSongs] = useContext(MusicContext);
+  useEffect(() => {
+    if (data) {
+      setSongs([...songs, ...data.getSongs]);
+    }
+  }, [data]);
   return (
     <>
       <h1>Recently Played</h1>
@@ -30,10 +36,13 @@ const RecentlyPlayed = () => {
         <IoSearch />
       </div>
       <section>
-        {data?.getSongs.map((song) => (
-          // <b>{song.title}</b>
-          <SongTile key={song._id} song={song} />
-        ))}
+        {loading ? (
+          <div className="loader">
+            <BiLoaderAlt />
+          </div>
+        ) : (
+          data?.getSongs.map((song) => <SongTile key={song._id} song={song} />)
+        )}
       </section>
     </>
   );
