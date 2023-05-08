@@ -6,7 +6,7 @@ import Player from "./components/Player";
 function App() {
   return (
     <>
-      <div className="main-container">
+      <div id="main" className="main-container">
           <Navigation />
           <MainLayout />
           <Player />

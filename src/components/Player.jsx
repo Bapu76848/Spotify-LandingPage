@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-
+import Poster from "../assets/default-music-poster.jpg";
 import {
   IoEllipsisHorizontal,
   IoPlay,
@@ -10,13 +10,15 @@ import {
 import { TbPlayerPauseFilled } from "react-icons/tb";
 import { PlayerContext } from "../context/PlayerContext";
 import { MusicContext } from "../context/MusicContext";
+import { getImageColor } from "../image-color/image-color";
 
 const Player = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useContext(PlayerContext);
-  const [songs, setSongs] = useContext(MusicContext);
+  const [songs] = useContext(MusicContext);
   const [currentTimePercent, setCurrentTimePercent] = useState(0);
   const audio = useRef();
+  const image = useRef();
   const rangeControl = useRef();
 
   useEffect(() => {
@@ -27,6 +29,12 @@ const Player = () => {
     }
     console.log(currentSong);
   }, [currentSong]);
+  function handleLoadedImage(e) {
+    const { r, g, b } = getImageColor(image.current);
+    document.getElementById(
+      "main"
+    ).style.background = `linear-gradient(to bottom right,rgb(${r},${g},${b},0.2),transparent 80%)`;
+  }
   useEffect(() => {
     updateRangeControl();
   }, [currentTimePercent]);
@@ -40,7 +48,6 @@ const Player = () => {
 
   function handleSeek(e) {
     audio.current.currentTime = (e.target.value * audio.current.duration) / 100;
-    console.log("seek", e.target.value);
     setCurrentTimePercent(
       Math.floor((audio.current.currentTime / audio.current.duration) * 100)
     );
@@ -54,7 +61,6 @@ const Player = () => {
   }
 
   function handlePlayPause() {
-    console.dir(audio.current);
     if (isPlaying) {
       audio.current.pause();
       setIsPlaying(false);
@@ -98,7 +104,12 @@ const Player = () => {
           ></audio>
         </div>
         <div className="song-img">
-          <img width={300} src={currentSong.photo} alt={currentSong.title} />
+          <img
+            onLoad={handleLoadedImage}
+            ref={image}
+            src={currentSong.photo ? currentSong.photo : Poster}
+            alt={currentSong.title}
+          />
         </div>
 
         <div className="song-controls">
