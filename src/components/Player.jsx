@@ -17,9 +17,12 @@ const Player = () => {
   const [currentSong, setCurrentSong] = useContext(PlayerContext);
   const [songs] = useContext(MusicContext);
   const [currentTimePercent, setCurrentTimePercent] = useState(0);
+  const [volume, setVolume] = useState(100);
   const audio = useRef();
   const image = useRef();
   const rangeControl = useRef();
+  const volumeControl = useRef();
+  const [isVolumeOpen, setIsVolumeOpen] = useState(false);
 
   useEffect(() => {
     audio.current.src = currentSong.url;
@@ -35,6 +38,7 @@ const Player = () => {
       "main"
     ).style.background = `linear-gradient(to right,rgb(${r},${g},${b},0.2),transparent 80%)`;
   }
+  // Updating Range
   useEffect(() => {
     updateRangeControl();
   }, [currentTimePercent]);
@@ -89,6 +93,18 @@ const Player = () => {
       }
       setCurrentSong({ ...songs[index - 1], isFirst: false });
     }
+  }
+  useEffect(() => {
+    console.log(volume);
+    audio.current.volume = volume / 100;
+    volumeControl.current.value = volume;
+    volumeControl.current.nextElementSibling.children[0].style.width = `${volume}%`;
+    volumeControl.current.nextElementSibling.nextElementSibling.style.left = `${volume}%`;
+  }, [volume]);
+
+  function handleVolume(e) {
+    e.stopPropagation();
+    setVolume(e.target.value);
   }
   return (
     <aside id="player">
@@ -150,7 +166,29 @@ const Player = () => {
               </button>
             </span>
             <span>
-              <button className="bg-dark">
+              <button
+                className="bg-dark volume-btn"
+                onClick={() => setIsVolumeOpen(!isVolumeOpen)}
+              >
+                <div
+                  className={`volume-pop ${isVolumeOpen ? "open" : ""}`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="range">
+                    <input
+                      type="range"
+                      min={0}
+                      ref={volumeControl}
+                      value={volume}
+                      max={100}
+                      onInput={handleVolume}
+                    />
+                    <div className="range-style-bg">
+                      <div className="range-style"></div>
+                    </div>
+                    <div className="dot"></div>
+                  </div>
+                </div>
                 <IoVolumeHigh />
               </button>
             </span>

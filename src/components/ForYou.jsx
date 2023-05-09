@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import SongTile from "./SongTile";
 import { useQuery, gql } from "@apollo/client";
@@ -20,21 +20,33 @@ const GET_SONGS = gql`
 
 const ForYou = () => {
   const [songs, setSongs] = useContext(MusicContext);
-
   const { loading, data } = useQuery(GET_SONGS, {
     variables: { playlistId: 1 },
   });
+  const [filteredSongs, setFilteredSongs] = useState([]);
   useEffect(() => {
     if (data) {
       setSongs([...songs, ...data.getSongs]);
+      setFilteredSongs(data.getSongs);
     }
   }, [data]);
+
+  function handleSearch(e) {
+    const filtered = data.getSongs.filter((song) =>
+      song.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilteredSongs(filtered);
+  }
 
   return (
     <>
       <h1>For You</h1>
       <div className="search-wrapper">
-        <input type="search" placeholder="Search Song, Artist" />
+        <input
+          type="search"
+          onChange={handleSearch}
+          placeholder="Search Song, Artist"
+        />
         <IoSearch />
       </div>
       <section>
@@ -43,7 +55,7 @@ const ForYou = () => {
             <BiLoaderAlt />
           </div>
         ) : (
-          data?.getSongs.map((song) => <SongTile key={song._id} song={song} />)
+          filteredSongs.map((song) => <SongTile key={song._id} song={song} />)
         )}
       </section>
     </>
