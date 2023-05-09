@@ -1,13 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { PlayerProvider } from "./context/PlayerContext";
+import { MusicProvider } from "./context/MusicContext";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const client = new ApolloClient({
+  uri: "https://api.ss.dev/resource/api",
+  cache: new InMemoryCache(),
+});
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <MusicProvider>
+          <PlayerProvider>
+            <App />
+          </PlayerProvider>
+        </MusicProvider>
+      </BrowserRouter>
+    </ApolloProvider>
   </React.StrictMode>
 );
 
