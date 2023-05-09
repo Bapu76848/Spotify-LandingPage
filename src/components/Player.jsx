@@ -6,6 +6,9 @@ import {
   IoPlayBack,
   IoPlayForward,
   IoVolumeHigh,
+  IoVolumeLow,
+  IoVolumeMedium,
+  IoVolumeMute,
 } from "react-icons/io5";
 import { TbPlayerPauseFilled } from "react-icons/tb";
 import { PlayerContext } from "../context/PlayerContext";
@@ -23,6 +26,7 @@ const Player = () => {
   const rangeControl = useRef();
   const volumeControl = useRef();
   const [isVolumeOpen, setIsVolumeOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     audio.current.src = currentSong.url;
@@ -30,7 +34,6 @@ const Player = () => {
       audio.current.play();
       setIsPlaying(true);
     }
-    console.log(currentSong);
   }, [currentSong]);
   function handleLoadedImage(e) {
     const { r, g, b } = getImageColor(image.current);
@@ -95,7 +98,6 @@ const Player = () => {
     }
   }
   useEffect(() => {
-    console.log(volume);
     audio.current.volume = volume / 100;
     volumeControl.current.value = volume;
     volumeControl.current.nextElementSibling.children[0].style.width = `${volume}%`;
@@ -105,6 +107,13 @@ const Player = () => {
   function handleVolume(e) {
     e.stopPropagation();
     setVolume(e.target.value);
+  }
+
+  function shareSong() {
+    if (navigator.canShare(currentSong)) {
+      navigator.share(currentSong);
+    }
+    setIsMenuOpen(false);
   }
   return (
     <aside id="player">
@@ -145,7 +154,31 @@ const Player = () => {
           </div>
           <div className="controls-handlers">
             <span>
-              <button className="bg-dark">
+              <button
+                title="Menu"
+                className="bg-dark player-menu-btn"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                <div
+                  className={`player-menu ${isMenuOpen ? "open" : ""}`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <ul>
+                    <li>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(currentSong.url);
+                          setIsMenuOpen(false);
+                        }}
+                      >
+                        Copy Link
+                      </button>
+                    </li>
+                    <li>
+                      <button onClick={shareSong}>Share</button>
+                    </li>
+                  </ul>
+                </div>
                 <IoEllipsisHorizontal />
               </button>
             </span>
@@ -167,6 +200,7 @@ const Player = () => {
             </span>
             <span>
               <button
+                title="Volume"
                 className="bg-dark volume-btn"
                 onClick={() => setIsVolumeOpen(!isVolumeOpen)}
               >
@@ -189,7 +223,10 @@ const Player = () => {
                     <div className="dot"></div>
                   </div>
                 </div>
-                <IoVolumeHigh />
+                {volume == 0 && <IoVolumeMute />}
+                {volume > 0 && volume < 33 && <IoVolumeLow />}
+                {volume > 33 && volume < 66 && <IoVolumeMedium />}
+                {volume > 66 && <IoVolumeHigh />}
               </button>
             </span>
           </div>
