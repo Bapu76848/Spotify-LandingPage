@@ -16,6 +16,7 @@ const MainLayout = () => {
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
     </main>
+    
   );
 };
 

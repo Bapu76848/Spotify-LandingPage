@@ -113,6 +113,7 @@ aside#player {
   top: 0;
   left: 0;
 }
+
 #player > div {
   width: var(--content-width);
 }
@@ -313,7 +314,7 @@ main > section:has(> .loader) {
 
 .range input {
   left: -1px;
-  width: 100%;
+  width: 100% !important;
   height: 8px;
   position: absolute;
   z-index: 20;
@@ -345,7 +346,6 @@ main > section:has(> .loader) {
 .range .dot {
   position: absolute;
   display: none;
-  left: 0%;
   transform: translateX(-50%);
   z-index: 3;
 }
@@ -382,10 +382,6 @@ main > section:has(> .loader) {
   box-shadow: 0 2px 4px var(--black-clr);
   z-index: 30;
   display: none;
-}
-.volume-pop input {
-  /* opacity: 1; */
-  width: 100% !important;
 }
 .volume-pop .range-style-bg {
   background-color: var(--gray-70);
@@ -446,5 +442,174 @@ main > section:has(> .loader) {
   to {
     bottom: calc(100% + 5px);
     opacity: 1;
+  }
+}
+
+.mobile-player {
+  display: none;
+  width: 100% !important;
+  position: fixed;
+  inset: auto 0 0 0;
+  background-color: var(--gray-dark) !important;
+  /* height: 60px; */
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem 0.25rem 0.25rem 0.25rem;
+}
+@media screen and (max-width: 954px) {
+  .volume-pop {
+    right: 0;
+    left: unset;
+    transform: unset;
+  }
+}
+.volume-pop .range {
+  margin: 0.8rem 0 !important;
+}
+.mobile-player .poster {
+  width: 50px;
+  height: 50px;
+}
+.mobile-player .poster img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.23rem;
+  box-shadow: 0 2px 5px var(--black-clr);
+}
+
+.mobile-player .song-info-m {
+  display: flex;
+  gap: 0.5rem;
+}
+.song-info-m p {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.song-info-m small {
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  color: var(--gray-70);
+  font-weight: 500;
+}
+
+.mobile-music-controls {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-music-controls .range {
+  margin: 0 0 0.6rem 0;
+}
+.mobile-player .controls-handlers {
+  margin-top: 0;
+  gap: 1rem;
+  justify-content: center;
+}
+.mobile-player .controls-handlers > button {
+  width: 29px;
+  height: 29px;
+}
+.mobile-player .controls-handlers > span:first-child {
+  margin-right: auto;
+}
+.mobile-player .controls-handlers > span:last-child {
+  margin-left: auto;
+}
+
+.mobile-menu-btn {
+  padding: 0.23rem;
+  outline: none;
+  font-size: 1.4rem;
+  right: 1rem;
+  top: 1rem;
+  position: fixed;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  background-color: var(--gray-transluscent);
+  color: var(--white-clr);
+  border: 1px solid var(--gray-dark);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background-color 200ms;
+  box-shadow: 0 2px 5px var(--black-clr);
+  display: none;
+}
+.mobile-menu-btn:hover,
+.mobile-menu-btn:active,
+.mobile-menu-btn:focus {
+  background-color: var(--slate-80);
+}
+
+@media screen and (max-width: 874px) {
+  .main-container {
+    gap: 0 !important;
+  }
+  main {
+    flex-basis: 50% !important;
+  }
+  aside#player {
+    flex-basis: 25%;
+    --content-width: 100%;
+    padding: 1rem 1rem 1rem 0;
+  }
+  aside#player img {
+    min-height: unset;
+  }
+}
+@media screen and (max-width: 700px) {
+  .mobile-player {
+    gap: 0.5rem;
+  }
+  .mobile-music-controls {
+    flex: 1;
+  }
+}
+@media screen and (max-width: 450px) {
+  .mobile-player .song-info-m div:not(.poster) {
+    display: none;
+  }
+}
+@media screen and (max-width: 780px) {
+  aside#player #desktop-player {
+    display: none;
+  }
+  aside#player #mobile-player {
+    display: flex;
+    box-sizing: border-box;
+  }
+  .main-container {
+    max-height: calc(100vh - 65px) !important;
+    min-height: calc(100vh - 65px) !important;
+  }
+  aside#player {
+    flex-basis: 0% !important;
+    padding: 0 !important;
+  }
+  main {
+    flex: 1 !important;
+  }
+}
+@media screen and (max-width: 556px) {
+  aside#navigation {
+    position: fixed;
+    width: 200px;
+    height: 100vh;
+    z-index: 10;
+    box-sizing: border-box;
+    background-color: var(--gray-dark);
+    box-shadow: 3px 0 3rem var(--black-clr);
+    transform: translateX(-100%);
+    transition: transform 200ms ease;
+  }
+  .mobile-menu-btn{
+    display: grid;
+  }
+  .mobile-nav-open{
+    transform: translateX(0) !important;
   }
 }

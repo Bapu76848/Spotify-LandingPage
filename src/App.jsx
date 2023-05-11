@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Navigation from "./components/Navigation";
 import MainLayout from "./components/MainLayout";
@@ -7,9 +6,9 @@ function App() {
   return (
     <>
       <div id="main" className="main-container">
-          <Navigation />
-          <MainLayout />
-          <Player />
+        <Navigation />
+        <MainLayout />
+        <Player />
       </div>
     </>
   );
